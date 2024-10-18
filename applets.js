@@ -62,3 +62,22 @@ class AppletRenderer {
         this.initializeTooltips();
     }
 
+    initializeTooltips() {
+        const tooltipTriggerList = [].slice.call(this.container.querySelectorAll('[data-bs-toggle="tooltip"]'));
+        tooltipTriggerList.forEach(tooltipTriggerEl => {
+            new bootstrap.Tooltip(tooltipTriggerEl);
+        });
+    }
+
+    filterApplets() {
+        const query = this.searchInput.value.toLowerCase();
+        this.filteredData = this.appletData.filter(applet =>
+            applet.title.toLowerCase().includes(query) ||
+            applet.description.toLowerCase().includes(query)
+        );
+        this.renderApplets(this.filteredData);
+    }
+}
+
+const appletRenderer = new AppletRenderer('applet-container', 'searchApplet');
+appletRenderer.fetchAppletData('applets.js');
