@@ -36,3 +36,35 @@ class TodoList {
         `;
         this.todoList.appendChild(listItem);
     }
+
+    doneTask(event) {
+        const taskItem = event.target.closest('.todo-item');
+        const taskText = taskItem.querySelector('.task-text');
+        taskText.classList.toggle('completed'); 
+
+        const buttons = taskItem.querySelectorAll('button');
+        buttons.forEach(button => button.disabled = true);
+    }
+
+    updateTask(taskText) {
+        this.todoList.children[this.editingIndex].querySelector('.task-text').textContent = taskText;
+        this.resetEditing();
+    }
+
+    removeTask(event) {
+        this.todoList.removeChild(event.target.closest('.todo-item'));
+    }
+
+    editTask(event) {
+        const taskItem = event.target.closest('.todo-item');
+        this.todoInput.value = taskItem.querySelector('.task-text').textContent;
+        this.editingIndex = Array.from(this.todoList.children).indexOf(taskItem);
+        this.addButton.textContent = 'Update';
+    }
+
+    resetEditing() {
+        this.editingIndex = -1;
+        this.addButton.textContent = 'Add';
+    }
+    
+}
