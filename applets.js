@@ -80,4 +80,4 @@ class AppletRenderer {
 }
 
 const appletRenderer = new AppletRenderer('applet-container', 'searchApplet');
-appletRenderer.fetchAppletData('applets.js');
+appletRenderer.fetchAppletData('applets.json');
