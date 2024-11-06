@@ -54,4 +54,4 @@ class StudentList {
     }
 }
 
-const studentList = new StudentList('applet.js');
+const studentList = new StudentList('applet-4.json');
